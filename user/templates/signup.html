@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Signup{% endblock title %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/css/signup.css">
+{% endblock head %}
+
+{% block code %}
+<div class="container my-5">
+    <form action="/createuser" method="post">
+        {% csrf_token %}
+        <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Username</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="staticEmail" name="username" placeholder="Username" required>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="staticEmail" name="email" placeholder="Email" required>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">First name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="staticEmail" name="fname" placeholder="First name" required>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Last name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="staticEmail" name="lname" placeholder="Last name" required>
+            </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="inputPassword" name="password" placeholder='Password' required>
+          </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Confirm Password</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="inputPassword" name="re_password" placeholder='Confirm Password' required>
+            </div>
+          </div>
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <button class="btn btn-primary" type="submit">Sign Up</button>
+        </div>
+    </form>
+</div>
+{% endblock code %}
