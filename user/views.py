@@ -1,6 +1,9 @@
-from django.shortcuts import redirect, render
+import imp
+import re
+from django.shortcuts import redirect, render, HttpResponse
 from user.models import Contact
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -44,3 +47,20 @@ def signup(request):
     return render(request, 'signup.html')
 
 
+def createuser(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        email = request.POST['email']
+        firstname = request.POST['fname']
+        lastname = request.POST['lname']
+        password1 = request.POST['password']
+        password2 = request.POST['re_password']
+
+        if password1 != password2:
+            return HttpResponse("password not matched")
+
+        user = User.objects.create_user(username=username, email=email, password=password1, first_name=firstname, last_name=lastname)
+        # user.first_name = firstname
+        # user.last_name = lastname
+        user.save()
+    return redirect("/login")
