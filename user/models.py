@@ -10,3 +10,13 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.email
+
+class Student(models.Model):
+    name = models.CharField(max_length=25)
+    age = models.IntegerField()
+    branch = models.CharField(max_length=20)
+    address = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="user/student")
+
+    def __str__(self):
+        return self.name
