@@ -1,15 +1,17 @@
-import imp
-import re
+from multiprocessing import context
 from django.shortcuts import redirect, render, HttpResponse
 from user.models import Contact
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from user.models import Student
 
 
 # Create your views here.
 def index(request):
     if request.user.is_authenticated:
-        return render(request, 'index.html')
+        students = Student.objects.all()
+        context = {"students": students}
+        return render(request, 'index.html', context)
     return redirect("/login")
 
 def about(request):

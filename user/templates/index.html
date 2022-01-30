@@ -1,14 +1,24 @@
 {% extends 'base.html' %}
 {% block title %}Home{% endblock title %}
 {% block code %}
+
 <div class="container">
-    <h3>this is something</h3>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore aperiam, ex quae nulla reiciendis maxime dolorum at consequatur asperiores vero libero assumenda. Incidunt ducimus architecto minima facilis deserunt esse vel similique error sit? Sed?</p>
-    <h3>this is something</h3>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore aperiam, ex quae nulla reiciendis maxime dolorum at consequatur asperiores vero libero assumenda. Incidunt ducimus architecto minima facilis deserunt esse vel similique error sit? Sed?</p>
-    <h3>this is something</h3>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore aperiam, ex quae nulla reiciendis maxime dolorum at consequatur asperiores vero libero assumenda. Incidunt ducimus architecto minima facilis deserunt esse vel similique error sit? Sed?</p>
-    <h3>this is something</h3>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore aperiam, ex quae nulla reiciendis maxime dolorum at consequatur asperiores vero libero assumenda. Incidunt ducimus architecto minima facilis deserunt esse vel similique error sit? Sed?</p>
+    {% for student in students %}
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{student.image.url}}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{student.name}}</h5>
+              <p class="card-text">Age: {{student.age}}</p>
+              <p class="card-text">Address: {{student.address}}</p>
+              <p class="card-text"><small class="text-muted">{{student.branch}}</small></p>
+            </div>
+          </div>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% endblock code %}
