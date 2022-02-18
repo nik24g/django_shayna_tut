@@ -3,6 +3,7 @@ from user.models import Contact
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from user.models import Student
+from django.contrib import messages
 
 
 # Create your views here.
@@ -65,3 +66,17 @@ def createuser(request):
         # user.last_name = lastname
         user.save()
     return redirect("/login")
+
+def create_student(request):
+    if request.method == "POST":
+        name = request.POST['name']
+        age = request.POST['age']
+        branch = request.POST['branch']
+        address = request.POST['address']
+        image = request.FILES.get('image')
+
+        # Student 
+        student = Student(name=name, age=age, branch=branch, address=address, image=image)
+        student.save()
+        messages.success(request, 'Student Added Successfully')
+    return render(request, 'create_student.html')
