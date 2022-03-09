@@ -10,7 +10,7 @@ class UserAdmin(UserAdmin):
     list_filter = ('id', 'email', 'username', 'first_name', 'last_name', 'is_staff', 'is_active', 'is_superuser')
 
     fieldsets = (
-        ("details", {
+        ("Details", {
             "fields": (
                 'email',
                 'password',
@@ -21,7 +21,7 @@ class UserAdmin(UserAdmin):
                 'image'
             ),
         }),
-        ('permissions', {'fields': ('is_staff', 'is_active', 'is_superuser')})
+        ('Permissions', {'fields': ('is_staff', 'is_active', 'is_superuser')})
     )
     
     add_fieldsets = (
@@ -49,3 +49,4 @@ class UserAdmin(UserAdmin):
 admin.site.register(Contact)
 admin.site.register(Student)
 admin.site.register(Employee)
+admin.site.register(Address)

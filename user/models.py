@@ -41,9 +41,21 @@ class Student(models.Model):
 class Employee(models.Model):
     name = models.CharField(max_length=30)
     employee_id = models.CharField(max_length=10)
-    address = models.TextField()
     salary = models.IntegerField()
 
     def __str__(self):
         return self.name
+
+class Address(models.Model):
+    address = models.TextField()
+
+    # for many to one relationship
+    # employee_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
+
+    # for one to one relationship
+    # employee_id = models.OneToOneField(Employee, on_delete=models.CASCADE)
+
+    # for many to many relationship
+    employee_id = models.ManyToManyField(Employee)
+
     
