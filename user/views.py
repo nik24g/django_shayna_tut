@@ -80,3 +80,23 @@ def create_student(request):
         student.save()
         messages.success(request, 'Student Added Successfully')
     return render(request, 'create_student.html')
+
+def change_password(request):
+    if request.method == "POST":
+        oldPassword = request.POST.get("oldpassword")
+        password1 = request.POST.get("password1")
+        password2 = request.POST.get("password2")
+
+        email = request.user.email
+        user = authenticate(username=email, password=oldPassword)
+        if user:
+            if password1 == password2:
+                user.set_password(password1)
+                user.save()
+                messages.success(request, "Password Changed")
+            else:
+                messages.warning(request, "Password not matched")
+        else:
+            messages.warning(request, "Old password is wrong")
+
+    return render(request, "change-password.html")
