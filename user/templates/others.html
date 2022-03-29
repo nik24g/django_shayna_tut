@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Find Others{% endblock title %}
+
+{% block code %}
+<style>
+    .upper-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+<form method="post">
+    {% csrf_token %}
+    <div class="container my-5">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Find</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" name="name" placeholder="Enter Name">
+        </div>
+        <button type="submit" class="btn btn-success">Search</button>
+    </div>
+</form>
+
+
+<div class="upper-container">
+    <div class="card" style="width: 18rem;">
+        <ul class="list-group list-group-flush">
+            {% for queryuser in queryusers %}
+                <li class="list-group-item">{{queryuser.first_name}} {{queryuser.last_name}}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock code %}

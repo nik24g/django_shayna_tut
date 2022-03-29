@@ -1,8 +1,8 @@
 from django.shortcuts import redirect, render, HttpResponse
 from user.models import Contact
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
-from user.models import Student
+# from django.contrib.auth.models import User
+from user.models import Student, User
 from django.contrib import messages
 
 
@@ -98,5 +98,15 @@ def change_password(request):
                 messages.warning(request, "Password not matched")
         else:
             messages.warning(request, "Old password is wrong")
-
     return render(request, "change-password.html")
+
+
+def others(request):
+    if request.method == "POST":
+        name = request.POST['name']
+        users = User.objects.filter(first_name__icontains = name)
+        print(users)
+        payload = {"queryusers": users}
+        return render(request, "others.html", payload)
+
+    return render(request, "others.html")
