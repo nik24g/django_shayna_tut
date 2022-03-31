@@ -25,7 +25,8 @@
     <div class="card" style="width: 18rem;">
         <ul class="list-group list-group-flush">
             {% for queryuser in queryusers %}
-                <li class="list-group-item">{{queryuser.first_name}} {{queryuser.last_name}}</li>
+                {% comment %} <a href="/profile/{{queryuser.id}}"><li class="list-group-item">{{queryuser.first_name}} {{queryuser.last_name}}</li></a> {% endcomment %}
+                <a href="{% url 'userurls:profile' id=queryuser.id %}"><li class="list-group-item">{{queryuser.first_name}} {{queryuser.last_name}}</li></a>
             {% endfor %}
         </ul>
     </div>

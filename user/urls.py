@@ -14,5 +14,6 @@ urlpatterns = [
     path('createuser', views.createuser, name='createuser'),
     path('create_student', views.create_student, name='create_student'),
     path('change-password', views.change_password, name='change-password'),
-    path('others', views.others, name='others')
+    path('others', views.others, name='others'),
+    path('profile/<int:id>', views.profile, name="profile")
 ]

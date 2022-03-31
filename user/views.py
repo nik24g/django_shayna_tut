@@ -110,3 +110,17 @@ def others(request):
         return render(request, "others.html", payload)
 
     return render(request, "others.html")
+
+def profile(request, *args, **kwargs):
+    if request.user.is_authenticated:
+        id = kwargs.get('id')
+        # print(id)
+        payload = {}
+        try:
+            query_user = User.objects.get(pk = id)
+        except User.DoesNotExist:
+            return HttpResponse("User not available")
+        payload['query_user'] = query_user
+        return render(request, "profile.html", payload)
+    else:
+        return redirect("/login")

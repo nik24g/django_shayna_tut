@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block titile %}Profile{% endblock titile %}
+
+{% block code %}
+{{query_user.first_name}}{{query_user.last_name}}
+
+{{query_user.email}}
+{{query_user.username}}
+{% endblock code %}
